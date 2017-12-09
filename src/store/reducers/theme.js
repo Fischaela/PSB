@@ -19,17 +19,23 @@ const themeColors = (styles = {}) => {
   let buttonWidth = '108px';
   let buttonHeight = '27px';
   let textSize = '10px';
+  let iconWidth = '18px';
+  let iconHeight = iconWidth;
 
   switch (sizeConfig) {
     case 'medium':
       buttonWidth = '140px';
       buttonHeight = '41px';
       textSize = '12px';
+      iconWidth = '22px';
+      iconHeight = iconWidth;
       break;
     case 'big':
       buttonWidth = '180px';
       buttonHeight = '54px';
       textSize = '16px';
+      iconWidth = '30px';
+      iconHeight = iconWidth;
       break;
     default:
       return;
@@ -40,28 +46,49 @@ const themeColors = (styles = {}) => {
   let backgroundColor = main;
   let border = 'none';
   let textColor = negative ? light : dark;
-  let iconColor = negative ? light : dark;
+  let iconColor = textColor;
 
   switch (styleConfig) {
     case 'outline':
       backgroundColor = 'transparent';
       border = 'solid 0.175em ' + main;
       textColor = main;
-      iconColor = main;
+      iconColor = textColor;
       break;
     case 'frameless':
       backgroundColor = 'transparent';
+    default:
+      return;
   }
+
+  const formatConfig = get(styles, 'format', 'rectangle');
+  // default format: rectangle
+
+  switch (formatConfig) {
+    case 'square':
+      buttonWidth = buttonHeight;
+      break;
+    case 'cover':
+      break;
+    default:
+      return;
+  }
+
 
   return {
     button: {
       backgroundColor: backgroundColor,
       border: border,
-      iconColor: iconColor,
       textColor: textColor,
       textSize: textSize,
       width: buttonWidth,
-      height: buttonHeight
+      height: buttonHeight,
+      format: formatConfig
+    },
+    icon: {
+      color: iconColor,
+      width: iconWidth,
+      height: iconHeight
     }
   }
 };

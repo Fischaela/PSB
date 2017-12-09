@@ -1,10 +1,15 @@
 <template>
-  <button class="button" :style="buttonStyle">
-    <span class="label">
-      <SubscribeIcon class="icon" :color="theme.button.iconColor"></SubscribeIcon>
-      Subscribe
+  <div>
+    <span v-if="theme.button.format === 'cover'">
+      <img src="http://meta.metaebene.me/media/newz/newz-logo-600x600.jpg" />
     </span>
-  </button>
+    <button class="button" :style="buttonStyle">
+      <span class="label">
+        <SubscribeIcon class="icon" :color="theme.icon.color" :style="iconStyle"></SubscribeIcon>
+        <span v-if="theme.button.format !== 'square'">Subscribe</span>
+      </span>
+    </button>
+  </div>
 </template>
 
 <script>
@@ -29,6 +34,12 @@ export default {
         backgroundColor: this.theme.button.backgroundColor,
         width: this.theme.button.width,
         height: this.theme.button.height
+      }
+    },
+    iconStyle() {
+      return {
+        width: this.theme.icon.width,
+        height: this.theme.icon.height
       }
     }
   }
