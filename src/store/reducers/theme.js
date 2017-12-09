@@ -85,6 +85,11 @@ const themeColors = (styles = {}) => {
       height: buttonHeight,
       format: formatConfig
     },
+    cover: {
+      url: get(styles, 'url'),
+      width: buttonWidth,
+      height: buttonWidth
+    },
     icon: {
       color: iconColor,
       width: iconWidth,

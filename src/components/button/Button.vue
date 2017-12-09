@@ -1,8 +1,6 @@
 <template>
   <div>
-    <span v-if="theme.button.format === 'cover'">
-      <img src="http://meta.metaebene.me/media/newz/newz-logo-600x600.jpg" />
-    </span>
+    <div class="cover" v-if="theme.button.format === 'cover'" :style="coverStyle"></div>
     <button class="button" :style="buttonStyle">
       <span class="label">
         <SubscribeIcon class="icon" :color="theme.icon.color" :style="iconStyle"></SubscribeIcon>
@@ -36,6 +34,13 @@ export default {
         height: this.theme.button.height
       }
     },
+    coverStyle() {
+      return {
+        backgroundImage: 'url("' + this.theme.cover.url + '")',
+        width: this.theme.cover.width,
+        height: this.theme.cover.height
+      }
+    },
     iconStyle() {
       return {
         width: this.theme.icon.width,
@@ -52,6 +57,10 @@ export default {
     text-align: center;
     text-transform: uppercase;
     border-radius: 0;
+  }
+  .cover {
+    background-size: cover;
+    cursor: pointer;
   }
   .icon {
     vertical-align: middle;
