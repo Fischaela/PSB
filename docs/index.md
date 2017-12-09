@@ -3,8 +3,7 @@ layout: page
 title: Overview
 navigation: 1
 ---
-# Podlove Web Player 4.0
-### The fast, flexible and responsive podcast player powered by podlove meta data.
+# Podlove Subscribe Button
 
 <p id="example"></p>
 <script src="{{ 'embed.js' | relative_url }}"></script>
@@ -208,17 +207,3 @@ navigation: 1
 
   podlovePlayer('#example', examples[Math.floor(Math.random() * examples.length)]);
 </script>
-
-## Features
-
-- Standalone and Wordpress Plugin
-- Responsive
-- Theming
-- Sharing
-- State Persistance
-- Deep Linking
-
-## Previous Versions
-
-- [Podlove Web Player v3 Docs](docs.podlove.org/podlove-web-player-v3/)
-- [Podlove Web Player v2 Docs](docs.podlove.org/podlove-web-player-v3/versions/v2.html)
