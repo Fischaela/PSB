@@ -1,20 +1,32 @@
 <template>
-  <button class="big button">
+  <button class="button" :style="buttonStyle">
     <span class="label">
-      <SubscribeIcon class="icon"></SubscribeIcon>
+      <SubscribeIcon class="icon" :color="theme.button.iconColor"></SubscribeIcon>
       Subscribe
     </span>
   </button>
 </template>
 
 <script>
-import store from 'store'
-
-import SubscribeIcon from 'icons/SubscribeIcon.vue'
+import store from 'store';
+import SubscribeIcon from 'icons/SubscribeIcon.vue';
 
 export default {
   components: {
     SubscribeIcon,
+  },
+  data() {
+    return {
+      theme: this.$select('theme')
+    }
+  },
+  computed: {
+    buttonStyle() {
+      return {
+        color: this.theme.button.textSize,
+        backgroundColor: this.theme.button.backgroundColor
+      }
+    }
   }
 }
 </script>
@@ -22,10 +34,8 @@ export default {
 <style lang="scss">
   @import '~styles/variables';
   .button {
-    color: $text-color;
     text-align: center;
     text-transform: uppercase;
-    background-color: $background-color;
     border-radius: 0;
     width: 100%;
   }

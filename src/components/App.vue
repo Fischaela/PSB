@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import ButtonComponent from './button/Button.vue'
+  import ButtonComponent from './button/Button.vue';
 
   export default {
     name: 'app',
