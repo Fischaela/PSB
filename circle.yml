@@ -1,0 +1,57 @@
+general:
+  branches:
+    ignore:
+      - gh-pages
+
+machine:
+  environment:
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
+  node:
+    version: 6.2.1
+  ruby:
+    version: 2.3.1
+
+dependencies:
+  override:
+    - yarn
+    - npm rebuild node-sass
+    - gem install bundler
+  pre:
+    - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+  cache_directories:
+    - ~/.cache/yarn
+
+compile:
+  override:
+    - yarn build
+
+test:
+  override:
+    - yarn lint
+    - yarn test
+  post:
+    - bash <(curl -s https://codecov.io/bash)
+
+deployment:
+  staging:
+    branch: development
+    commands:
+      - yarn docs:dev
+      - yarn build
+      - yarn deploy:surge
+
+  production:
+    branch: master
+    commands:
+      - yarn docs:prod
+      - yarn build
+      - yarn deploy:gh-pages
+
+  release:
+    branch: master
+    tag: /v.*/
+    commands:
+      - yarn dist:clean
+      - yarn build
+      - npm publish --access public
+      - yarn deploy:cdn

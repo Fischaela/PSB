@@ -1,0 +1,86 @@
+{
+  "CHAPTERS": {
+    "TITLE": "Kapitel"
+  },
+  "AUDIO": {
+    "TITLE": "Audio",
+    "VOLUME": "Lautstärke",
+    "SPEED": "Geschwindigkeit",
+    "DEBUG_STATE": "Debug State exportieren"
+  },
+  "PLAYER": {
+    "REPLAY": "Wiederholen",
+    "RETRY": "Retry"
+  },
+  "ERROR": {
+    "LOADING": {
+      "TITLE": "Fehler beim laden der Audiodatei",
+      "MESSAGE": "Die Audiodatei konnte nicht geladen werden, der Server ist nicht erreichbar. Bitte versuch es später nochmal."
+    },
+    "MISSING_FILES": {
+      "TITLE": "Benötigte Informationen fehlen",
+      "MESSAGE": "Zum abspielen des Podcasts fehlen die Referenzen zu den Audiodateien."
+    }
+  },
+  "DOWNLOAD": {
+    "TITLE": "Download",
+    "DURATION_WITH_HOURS": "{hours} Stunden {minutes} Minuten",
+    "DURATION": "{minutes} Minuten",
+    "ACTIONS": {
+      "DOWNLOAD": "Download Episode",
+      "COPY": "Url kopieren"
+    }
+  },
+  "SHARE": {
+    "TITLE": "Teilen",
+    "CONTENT": {
+      "SHOW": "Show",
+      "EPISODE": "Episode",
+      "CHAPTER": "Chapter",
+      "TIME": "Playtime"
+    },
+    "REFERENCE": {
+      "BEGINNING": "Beginn",
+      "CHAPTER": "Kapitel",
+      "TIME": "Spielzeit"
+    },
+    "SHARE_CHANNEL": "Teilen in...",
+    "SHARE_LINK": "Link",
+    "ACTIONS": {
+      "COPY": "kopieren"
+    },
+    "EPISODE": {
+      "TEXT": {
+        "BEGINNING": "\"{title}\" ({link})",
+        "CHAPTER": "\"{chapter}\" von \"{title}\" ({link})",
+        "PLAYTIME": "\"{title}\" ({link})"
+      },
+      "SUBJECT": {
+        "BEGINNING": "{title}",
+        "CHAPTER": "{title}",
+        "PLAYTIME": "{title}"
+      }
+    },
+    "SHOW": {
+      "TEXT": "\"{title}\" ({link})",
+      "SUBJECT": "{title}"
+    }
+  },
+  "EMBED": {
+    "TITLE": "Embed Episode",
+    "LABEL": {
+      "SIZE": "Embed Size",
+      "CODE": "Embed Code"
+    },
+    "ACTIONS": {
+      "COPY": "Code kopieren"
+    }
+  },
+  "INFO": {
+    "TITLE": "Info",
+    "PUBLICATION_DATE": "Veröffentlicht: {day}.{month}.{year}",
+    "ON_AIR": "On Air",
+    "DURATION_WITH_HOURS": "{hours} Stunden {minutes} Minuten",
+    "DURATION": "{minutes} Minuten"
+  }
+}

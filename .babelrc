@@ -1,0 +1,15 @@
+{
+  "presets": ["es2015"],
+  "plugins": ["lodash", "transform-object-rest-spread"],
+  "env": {
+    "AVA": {
+      "plugins": [
+        "transform-runtime",
+        [
+          "babel-plugin-webpack-alias",
+          { "config": "src/webpack.config.js" }
+        ]
+      ]
+    }
+  }
+}
