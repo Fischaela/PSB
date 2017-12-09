@@ -23,8 +23,12 @@ export default {
   computed: {
     buttonStyle() {
       return {
-        color: this.theme.button.textSize,
-        backgroundColor: this.theme.button.backgroundColor
+        border: this.theme.button.border,
+        color: this.theme.button.textColor,
+        fontSize: this.theme.button.textSize,
+        backgroundColor: this.theme.button.backgroundColor,
+        width: this.theme.button.width,
+        height: this.theme.button.height
       }
     }
   }
@@ -37,12 +41,6 @@ export default {
     text-align: center;
     text-transform: uppercase;
     border-radius: 0;
-    width: 100%;
-  }
-  .button.big {
-    font-size: 16px;
-    width: 180px;
-    height: 54px;
   }
   .icon {
     vertical-align: middle;

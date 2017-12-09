@@ -6,9 +6,9 @@
   "language": "de",
   "theme": {
     "size": "medium",
-    "main": "#ffffff",
+    "main": "#e91e63",
     "format": "rectangle",
-    "style": "filled"
+    "style": "outline"
   },
   "feeds": [
     {
