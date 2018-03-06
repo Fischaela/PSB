@@ -36,9 +36,16 @@ const config = {
       options: {
         name: 'fonts/[name].[ext]?[hash]'
       }
+    }, {
+      test: /\.scss$/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: ['css-loader', 'sass-loader']
+      })
     }]
   },
   resolve: {
+    extensions: ['*', '.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.common.js',
       store: path.resolve(__dirname, './store/index.js'),

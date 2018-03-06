@@ -3,6 +3,7 @@ import color from 'color';
 
 const themeColors = (styles = {}) => {
   const main = get(styles, 'main', '#2B8AC6');
+  const mainColor = color(main);
   const highlight = get(styles, 'highlight');
 
   const light = '#fff';
@@ -10,6 +11,7 @@ const themeColors = (styles = {}) => {
   const grey = '#333';
 
   const luminosity = color(main).luminosity();
+  console.log('Luminosity', color(main).luminosity());
   const negative = luminosity < 0.25;
 
   const fallbackColor = (first, second) => first || second;
@@ -37,28 +39,34 @@ const themeColors = (styles = {}) => {
       iconWidth = '30px';
       iconHeight = iconWidth;
       break;
-    default:
-      return;
   }
 
   const styleConfig = get(styles, 'style', 'filled');
   // default style: filled
   let backgroundColor = main;
+  let backgroundColorHover = getHoverColor();
   let border = 'none';
-  let textColor = negative ? light : dark;
+  let borderHover = 'none';
+  let textColor = getContrastColor(mainColor);
+  let textColorHover = negative ? backgroundColorHover.lighten(0.7) : backgroundColorHover.darken(0.5);
   let iconColor = textColor;
+  let iconColorHover = textColorHover;
 
   switch (styleConfig) {
     case 'outline':
       backgroundColor = 'transparent';
+      backgroundColorHover = 'transparent';
       border = 'solid 0.175em ' + main;
+      borderHover = 'solid 0.175em ' + getHoverColor();
       textColor = main;
+      textColorHover = getHoverColor();
       iconColor = textColor;
+      iconColorHover = textColorHover;
       break;
     case 'frameless':
       backgroundColor = 'transparent';
-    default:
-      return;
+      backgroundColorHover = 'transparent';
+      break;
   }
 
   const formatConfig = get(styles, 'format', 'rectangle');
@@ -70,16 +78,36 @@ const themeColors = (styles = {}) => {
       break;
     case 'cover':
       break;
-    default:
-      return;
   }
 
+  function getHoverColor() {
+    return negative ? mainColor.lighten(0.15) : mainColor.darken(0.1);
+  }
+
+  function getContrastColor(inputColor) {
+    let newColor;
+
+    if (color(inputColor).luminosity() >= 0.9 ) {
+      newColor = inputColor.darken(0.6);
+    } else if (color(inputColor).luminosity() >= 0.6 && color(inputColor).luminosity() < 0.9) {
+      newColor = inputColor.darken(0.3);
+    } else if (color(inputColor).luminosity() >= 0.6 && color(inputColor).luminosity() < 0.9) {
+      newColor = inputColor.lighten(0.3);
+    } else {
+      newColor = inputColor.lighten(0.6);
+    }
+
+    return newColor;
+  }
 
   return {
     button: {
       backgroundColor: backgroundColor,
+      backgroundColorHover: backgroundColorHover,
       border: border,
+      borderHover: borderHover,
       textColor: textColor,
+      textColorHover: textColorHover,
       textSize: textSize,
       width: buttonWidth,
       height: buttonHeight,
@@ -92,6 +120,7 @@ const themeColors = (styles = {}) => {
     },
     icon: {
       color: iconColor,
+      colorHover: iconColorHover,
       width: iconWidth,
       height: iconHeight
     }

@@ -7,8 +7,8 @@
   "theme": {
     "size": "medium",
     "main": "#e91e63",
-    "format": "cover",
-    "style": "outline",
+    "format": "rectangle",
+    "style": "filled",
     "url": "http://meta.metaebene.me/media/newz/newz-logo-600x600.jpg"
   },
   "feeds": [

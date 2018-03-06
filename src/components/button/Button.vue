@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="cover" v-if="theme.button.format === 'cover'" :style="coverStyle"></div>
-    <button class="button" :style="buttonStyle">
+    <div class="cover" v-if="theme.button.cover === 'cover'" :style="coverStyle"></div>
+    <button class="button" :style="buttonStyle" @mouseenter="updateHoverState(true)" @mouseleave="updateHoverState(false)">
       <span class="label">
         <SubscribeIcon class="icon" :color="theme.icon.color" :style="iconStyle"></SubscribeIcon>
         <span v-if="theme.button.format !== 'square'">Subscribe</span>
@@ -20,16 +20,23 @@ export default {
   },
   data() {
     return {
-      theme: this.$select('theme')
+      theme: this.$select('theme'),
+      hoverState: false
     }
   },
   computed: {
     buttonStyle() {
+      let modifier = '';
+
+      if (this.hoverState) {
+        modifier = 'Hover';
+      }
+
       return {
-        border: this.theme.button.border,
-        color: this.theme.button.textColor,
+        border: this.theme.button['border' + modifier],
+        color: this.theme.button['textColor' + modifier],
         fontSize: this.theme.button.textSize,
-        backgroundColor: this.theme.button.backgroundColor,
+        backgroundColor: this.theme.button['backgroundColor' + modifier],
         width: this.theme.button.width,
         height: this.theme.button.height
       }
@@ -42,10 +49,22 @@ export default {
       }
     },
     iconStyle() {
+      let modifier = '';
+
+      if (this.hoverState) {
+        modifier = 'Hover';
+      }
+
       return {
+        color: this.theme.icon['color' + modifier],
         width: this.theme.icon.width,
         height: this.theme.icon.height
       }
+    }
+  },
+  methods: {
+    updateHoverState(isHover) {
+      this.hoverState = isHover;
     }
   }
 }
