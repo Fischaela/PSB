@@ -58,7 +58,7 @@ const preloader = sandbox => ({
   init: () => {
     sandbox.style.opacity = 0
     // maximum width player
-    sandbox.style['max-width'] = '768px'
+    sandbox.style['max-width'] = '100vw'
     sandbox.style.transition = 'all 500ms'
   },
   done: () => {
@@ -77,11 +77,26 @@ const renderPlayer = anchor => player => {
     .then(sandbox => {
       iframeResizer({
         checkOrigin: false,
-        log: false
+        log: false,
+        autoResize: false,
+        sizeWidth: true,
+        sizeHeight: true,
+        messageCallback: function(messageData) {
+          console.log(messageData);
+          if (messageData.message === 'openModal') {
+            sandbox.style['position'] = 'fixed';
+            sandbox.style['top'] = '0';
+            sandbox.style['left'] = '0';
+          }
+          if (messageData.message === 'closeModal') {
+            sandbox.style['position'] = 'static';
+            sandbox.style['top'] = 'auto';
+            sandbox.style['left'] = 'auto';
+          }
+        }
       }, sandbox)
 
-      loader.done()
-    })
+      loader.done()    })
     .return(sandbox)
     .then(getPodloveStore)
 }

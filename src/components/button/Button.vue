@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="cover" v-if="theme.button.cover === 'cover'" :style="coverStyle"></div>
-    <button class="button" :style="buttonStyle" @mouseenter="updateHoverState(true)" @mouseleave="updateHoverState(false)">
+    <button class="button" :style="buttonStyle" @mouseenter="updateHoverState(true)" @mouseleave="updateHoverState(false)" v-on:click="handleButtonClick()">
       <span class="label">
         <SubscribeIcon class="icon" :color="theme.icon.color" :style="iconStyle"></SubscribeIcon>
         <span v-if="theme.button.format !== 'square'">Subscribe</span>
@@ -65,6 +65,15 @@ export default {
   methods: {
     updateHoverState(isHover) {
       this.hoverState = isHover;
+    },
+    handleButtonClick() {
+      if ('parentIFrame' in window) {
+        parentIFrame.getPageInfo(function(callback) {
+          parentIFrame.size(callback.clientHeight, callback.clientWidth);
+        });
+        console.log(parentIFrame);
+        parentIFrame.sendMessage('openModal');
+      }
     }
   }
 }

@@ -1,11 +1,13 @@
 <template>
   <div class="podlove" :class="{[display]: display, [runtime.platform]: runtime.platform}" :style="appStyle">
+    <ModalComponent></ModalComponent>
     <ButtonComponent></ButtonComponent>
   </div>
 </template>
 
 <script>
   import ButtonComponent from './button/Button.vue';
+  import ModalComponent from './modal/Modal.vue';
 
   export default {
     name: 'app',
@@ -33,7 +35,8 @@
       }
     },
     components: {
-      ButtonComponent
+      ButtonComponent,
+      ModalComponent
     }
   }
 </script>
