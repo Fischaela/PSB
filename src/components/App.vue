@@ -1,7 +1,7 @@
 <template>
   <div class="podlove" :class="{[display]: display, [runtime.platform]: runtime.platform}" :style="appStyle">
     <ModalComponent v-if="modalOpen"></ModalComponent>
-    <ButtonComponent></ButtonComponent>
+    <ButtonComponent v-if="!modalOpen"></ButtonComponent>
   </div>
 </template>
 

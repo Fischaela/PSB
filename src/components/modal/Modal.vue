@@ -47,7 +47,7 @@ export default {
     margin: 0 auto;
     padding: 0;
     position: fixed;
-    left: 50px;
+    left: 0;
     right: 0;
     top: 0;
     bottom: 0;
@@ -55,6 +55,7 @@ export default {
     vertical-align: middle;
   }
   .popup__modal {
+    background-color: #FFFFFF;
     border-radius: 1px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     margin: -230px auto 0 auto;
