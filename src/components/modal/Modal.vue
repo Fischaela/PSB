@@ -14,6 +14,7 @@
           <FinishPanelComponent v-if="panel() === 2" class="popup__panel popup__panel--podcast"></FinishPanelComponent>
         </div>
       </div>
+      <a href="https://podlove.org" title="Podlove" target="_blank" class="popup__logo"><powered-by-podlove-icon width="130px" height="16px"></powered-by-podlove-icon></a>
     </div>
   </div>
 </template>
@@ -23,6 +24,7 @@ import store from 'store';
 import PodcastPanelComponent from './PanelPodcast';
 import ClientsPanelComponent from './PanelClients';
 import FinishPanelComponent from './PanelFinish';
+import PoweredByPodloveIcon from 'icons/PoweredByPodloveIcon'
 
 export default {
   data() {
@@ -66,7 +68,8 @@ export default {
   components: {
     PodcastPanelComponent,
     ClientsPanelComponent,
-    FinishPanelComponent
+    FinishPanelComponent,
+    PoweredByPodloveIcon
   }
 }
 </script>
@@ -86,6 +89,20 @@ export default {
     bottom: 0;
     transition: opacity 0.25s cubic-bezier(0.62, 0.28, 0.23, 0.99);
     vertical-align: middle;
+  }
+  .popup__logo {
+    background-color: #F2F2F2;
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+    bottom: 0;
+    color: #666666;
+    font-size: 10px;
+    height: 35px;
+    left: 0;
+    padding: 11px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
   }
   .popup__modal {
     background-color: #FFFFFF;
