@@ -3,10 +3,10 @@
     <div class="popup__modal">
       <div class="popup__modal__inner">
         <div class="popup__topbar">
-          <button class="popup__topbar__button popup__topbar__button--help" v-if="panel() === 0">H</button>
-          <button class="popup__topbar__button popup__topbar__button--back" v-if="panel() !== 0">B</button>
+          <button class="popup__topbar__button popup__topbar__button--help" :style="topbarButtonStyle" v-if="panel() === 0">H</button>
+          <button class="popup__topbar__button popup__topbar__button--back" :style="topbarButtonStyle" v-if="panel() !== 0">B</button>
           <span class="popup__topbar__title">Subscribe</span>
-          <button class="popup__topbar__button popup__topbar__button--close" v-on:click="handleCloseClick()">X</button>
+          <button class="popup__topbar__button popup__topbar__button--close" :style="topbarButtonStyle" v-on:click="handleCloseClick()">X</button>
         </div>
         <div class="popup__panels">
           <PodcastPanelComponent v-if="panel() === 0" class="popup__panel popup__panel--podcast"></PodcastPanelComponent>
@@ -29,6 +29,19 @@ export default {
     return {
       modal: this.$select('modal'),
       theme: this.$select('theme')
+    }
+  },
+  computed: {
+    topbarButtonStyle() {
+      let modifier = '';
+
+      if (this.hoverState) {
+        modifier = 'Hover';
+      }
+
+      return {
+        color: this.theme.unthemedButton['backgroundColor' + modifier]
+      }
     }
   },
   methods: {
