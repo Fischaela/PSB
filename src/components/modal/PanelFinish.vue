@@ -1,7 +1,6 @@
 <template>
   <div class="finish">
     FINISH
-    <button class="" v-text="" v-on:click="handleBackClick()">Back</button>
   </div>
 </template>
 
@@ -13,11 +12,6 @@ export default {
     return {
       show: this.$select('show'),
       theme: this.$select('theme')
-    }
-  },
-  methods: {
-    handleBackClick() {
-      store.dispatch(store.actions.panelClients());
     }
   }
 }

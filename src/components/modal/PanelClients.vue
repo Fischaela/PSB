@@ -11,8 +11,7 @@
         </li>
       </ul>
     </div>
-    <button class="" v-text="" v-on:click="handleBackClick()">Back</button>
-    <button class="" v-text="" v-on:click="handleNextClick()">Next</button>
+    <button class="finish__button" :class="{ 'podcast__button--hover': hoverState }" :style="buttonStyle" v-text="" @mouseenter="updateHoverState(true)" @mouseleave="updateHoverState(false)" v-on:click="handleNextClick()">Next</button>
   </div>
 </template>
 
@@ -22,16 +21,32 @@ import store from 'store';
 export default {
   data() {
     return {
+      hoverState: false,
       show: this.$select('show'),
       theme: this.$select('theme')
     }
   },
+  computed: {
+    buttonStyle() {
+      let modifier = '';
+
+      if (this.hoverState) {
+        modifier = 'Hover';
+      }
+
+      return {
+        color: this.theme.unthemedButton['textColor' + modifier],
+        backgroundColor: this.theme.unthemedButton['backgroundColor' + modifier]
+      }
+    }
+  },
   methods: {
-    handleBackClick() {
-      store.dispatch(store.actions.panelPodcast());
-    },
     handleNextClick() {
       store.dispatch(store.actions.panelFinish());
+    },
+    updateHoverState(isHover) {
+      console.log(isHover)
+      this.hoverState = isHover;
     }
   }
 }
@@ -49,5 +64,23 @@ export default {
     position: absolute;
     width: 300px;
     height: 100%;
+  }
+  .finish__button {
+    border-radius: 1px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    font-weight: 500;
+    height: 50px;
+    letter-spacing: 0.5px;
+    line-height: 21px;
+    outline: none;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.1s cubic-bezier(0.62, 0.28, 0.23, 0.99);
+    width: 100%;
+  }
+  .finish__button--hover {
+    box-shadow: none;
+    transform: translateY(1px);
   }
 </style>

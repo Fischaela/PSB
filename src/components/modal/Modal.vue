@@ -4,7 +4,7 @@
       <div class="popup__modal__inner">
         <div class="popup__topbar">
           <button class="popup__topbar__button popup__topbar__button--help" :style="topbarButtonStyle" v-if="panel() === 0">H</button>
-          <button class="popup__topbar__button popup__topbar__button--back" :style="topbarButtonStyle" v-if="panel() !== 0">B</button>
+          <button class="popup__topbar__button popup__topbar__button--back" :style="topbarButtonStyle" v-if="panel() !== 0" v-on:click="handleBackClick()">B</button>
           <span class="popup__topbar__title">Subscribe</span>
           <button class="popup__topbar__button popup__topbar__button--close" :style="topbarButtonStyle" v-on:click="handleCloseClick()">X</button>
         </div>
@@ -45,6 +45,13 @@ export default {
     }
   },
   methods: {
+    handleBackClick() {
+      if (this.panel() === 2) {
+        store.dispatch(store.actions.panelClients());
+      } else {
+        store.dispatch(store.actions.panelPodcast());
+      }
+    },
     handleCloseClick() {
       store.dispatch(store.actions.closeModal())
       if ('parentIFrame' in window) {
