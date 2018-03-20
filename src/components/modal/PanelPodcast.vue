@@ -1,11 +1,11 @@
 <template>
   <div class="podcast">
     <img class="podcast__cover" :v-if="show.cover" :src="show.cover">
-    <div class="">
-      <h1 v-text="show.title"></h1>
-      <p v-if="show.subtitle" v-text="show.subtitle"></p>
-      <button class="podcast__button" :class="{ 'podcast__button--hover': hoverState }" :style="buttonStyle" v-text="" @mouseenter="updateHoverState(true)" @mouseleave="updateHoverState(false)" v-on:click="handleNextClick()">Next</button>
+    <div class="podcast__copy">
+      <h1 class="podcast__title" v-text="show.title"></h1>
+      <p class="podcast__text" v-if="show.subtitle" v-text="show.subtitle"></p>
     </div>
+    <button class="podcast__button" :class="{ 'podcast__button--hover': hoverState }" :style="buttonStyle" v-text="" @mouseenter="updateHoverState(true)" @mouseleave="updateHoverState(false)" v-on:click="handleNextClick()">Next</button>
   </div>
 </template>
 
@@ -77,10 +77,27 @@ export default {
     box-shadow: none;
     transform: translateY(1px);
   }
+  .podcast__copy {
+    margin: 20px 0;
+    overflow: hidden;
+    height: 90px;
+  }
   .podcast__cover {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     margin: 0 auto;
     width: 160px;
     height: 160px;
+  }
+  .podcast__text {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.4em;
+    margin: 0;
+  }
+  .podcast__title {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 24px;
+    margin: 0 0 10px 0;
   }
 </style>
