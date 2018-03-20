@@ -9,7 +9,9 @@
           <button class="popup__topbar__button popup__topbar__button--close"></button>
         </div>
         <div class="popup__panels">
-          <PodcastPanelComponent class="popup__panel popup__panel--podcast"></PodcastPanelComponent>
+          <PodcastPanelComponent v-if="panel() === 0" class="popup__panel popup__panel--podcast"></PodcastPanelComponent>
+          <ClientsPanelComponent v-if="panel() === 1" class="popup__panel popup__panel--podcast"></ClientsPanelComponent>
+          <FinishPanelComponent v-if="panel() === 2" class="popup__panel popup__panel--podcast"></FinishPanelComponent>
         </div>
       </div>
     </div>
@@ -19,10 +21,13 @@
 <script>
 import store from 'store';
 import PodcastPanelComponent from './PanelPodcast';
+import ClientsPanelComponent from './PanelClients';
+import FinishPanelComponent from './PanelFinish';
 
 export default {
   data() {
     return {
+      modal: this.$select('modal'),
       theme: this.$select('theme')
     }
   },
@@ -33,10 +38,15 @@ export default {
         parentIFrame.reset();
         parentIFrame.sendMessage('closeModal');
       }
+    },
+    panel() {
+      return this.modal.panel
     }
   },
   components: {
-    PodcastPanelComponent
+    PodcastPanelComponent,
+    ClientsPanelComponent,
+    FinishPanelComponent
   }
 }
 </script>
@@ -48,6 +58,7 @@ export default {
     background-color: rgba(0, 0, 0, 0.5);
     margin: 0 auto;
     padding: 0;
+    overflow: hidden;
     position: fixed;
     left: 0;
     right: 0;

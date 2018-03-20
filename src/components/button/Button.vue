@@ -72,7 +72,8 @@ export default {
         height: 0
       };
 
-      store.dispatch(store.actions.openModal())
+      store.dispatch(store.actions.openModal());
+
       if ('parentIFrame' in window) {
         console.log('2',parentIFrame);
         parentIFrame.getPageInfo(function(callback) {
