@@ -4,7 +4,7 @@
     <div class="">
       <h1 v-text="show.title"></h1>
       <p v-if="show.subtitle" v-text="show.subtitle"></p>
-      <button class="podcast__button" v-text="" v-on:click="handleNextClick()">Next</button>
+      <button class="podcast__button" :class="{ 'podcast__button--hover': hoverState }" :style="buttonStyle" v-text="" @mouseenter="updateHoverState(true)" @mouseleave="updateHoverState(false)" v-on:click="handleNextClick()">Next</button>
     </div>
   </div>
 </template>
@@ -15,13 +15,32 @@ import store from 'store';
 export default {
   data() {
     return {
+      hoverState: false,
       show: this.$select('show'),
       theme: this.$select('theme')
+    }
+  },
+  computed: {
+    buttonStyle() {
+      let modifier = '';
+
+      if (this.hoverState) {
+        modifier = 'Hover';
+      }
+
+      return {
+        color: this.theme.button['textColor' + modifier],
+        backgroundColor: this.theme.button['backgroundColor' + modifier]
+      }
     }
   },
   methods: {
     handleNextClick() {
       store.dispatch(store.actions.panelClients());
+    },
+    updateHoverState(isHover) {
+      console.log(isHover)
+      this.hoverState = isHover;
     }
   }
 }
@@ -53,6 +72,10 @@ export default {
     text-transform: uppercase;
     transition: all 0.1s cubic-bezier(0.62, 0.28, 0.23, 0.99);
     width: 100%;
+  }
+  .podcast__button--hover {
+    box-shadow: none;
+    transform: translateY(1px);
   }
   .podcast__cover {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
