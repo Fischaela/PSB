@@ -44,11 +44,15 @@ const themeColors = (styles = {}) => {
   const styleConfig = get(styles, 'style', 'filled');
   // default style: filled
   let backgroundColor = main;
+  let unthemedBackgroundColor = backgroundColor;
   let backgroundColorHover = getHoverColor();
+  let unthemedBackgroundColorHover = backgroundColorHover;
   let border = 'none';
   let borderHover = 'none';
   let textColor = getContrastColor(mainColor);
+  let unthemedTextColor = textColor;
   let textColorHover = negative ? backgroundColorHover.lighten(0.7) : backgroundColorHover.darken(0.5);
+  let unthemedTextColorHover = textColorHover;
   let iconColor = textColor;
   let iconColorHover = textColorHover;
 
@@ -114,7 +118,6 @@ const themeColors = (styles = {}) => {
       format: formatConfig
     },
     cover: {
-      url: get(styles, 'url'),
       width: buttonWidth,
       height: buttonWidth
     },
@@ -123,6 +126,12 @@ const themeColors = (styles = {}) => {
       colorHover: iconColorHover,
       width: iconWidth,
       height: iconHeight
+    },
+    unthemedButton: {
+      backgroundColor: unthemedBackgroundColor,
+      backgroundColorHover: unthemedBackgroundColorHover,
+      textColor: unthemedTextColor,
+      textColorHover: unthemedTextColorHover
     }
   }
 };

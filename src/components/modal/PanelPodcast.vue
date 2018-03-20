@@ -29,8 +29,8 @@ export default {
       }
 
       return {
-        color: this.theme.button['textColor' + modifier],
-        backgroundColor: this.theme.button['backgroundColor' + modifier]
+        color: this.theme.unthemedButton['textColor' + modifier],
+        backgroundColor: this.theme.unthemedButton['backgroundColor' + modifier]
       }
     }
   },

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="cover" v-if="theme.button.cover === 'cover'" :style="coverStyle"></div>
+    <div class="cover" v-if="theme.button.format === 'cover'" :style="coverStyle"></div>
     <button class="button" :style="buttonStyle" @mouseenter="updateHoverState(true)" @mouseleave="updateHoverState(false)" v-on:click="handleButtonClick()">
       <span class="label">
         <SubscribeIcon class="icon" :color="theme.icon.color" :style="iconStyle"></SubscribeIcon>
@@ -20,6 +20,7 @@ export default {
   },
   data() {
     return {
+      show: this.$select('show'),
       theme: this.$select('theme'),
       hoverState: false
     }
@@ -42,8 +43,9 @@ export default {
       }
     },
     coverStyle() {
+      console.log(this.theme)
       return {
-        backgroundImage: 'url("' + this.theme.cover.url + '")',
+        backgroundImage: 'url("' + this.show.cover + '")',
         width: this.theme.cover.width,
         height: this.theme.cover.height
       }

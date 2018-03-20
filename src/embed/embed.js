@@ -73,6 +73,8 @@ const renderPlayer = anchor => player => {
         log: false,
         autoResize: false,
         sizeWidth: true,
+        widthCalculationMethod: 'max',
+        heightCalculationMethod: 'max',
         sizeHeight: true,
         messageCallback: function(messageData) {
           console.log(messageData);
