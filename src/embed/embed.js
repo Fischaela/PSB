@@ -15,13 +15,6 @@ import iframeResizerContentWindow from 'raw-loader!iframe-resizer/js/iframeResiz
 const playerSandbox = anchor => {
   const frame = createNode('iframe')
 
-  if (browser.name === 'ios') {
-    frame.setAttribute('width', anchor.offsetWidth)
-  } else {
-    frame.setAttribute('width', '100%')
-  }
-
-  frame.setAttribute('min-width', '100%')
   frame.setAttribute('seamless', '')
   frame.setAttribute('scrolling', 'no')
   frame.setAttribute('frameborder', '0')

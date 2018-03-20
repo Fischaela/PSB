@@ -1,6 +1,6 @@
 <template>
   <div class="podlove" :class="{[display]: display, [runtime.platform]: runtime.platform}" :style="appStyle">
-    <ModalComponent></ModalComponent>
+    <ModalComponent v-if="modalOpen"></ModalComponent>
     <ButtonComponent></ButtonComponent>
   </div>
 </template>
@@ -16,6 +16,7 @@
       this.$i18n.locale = this.$select('runtime.language')
 
       return {
+        modal: this.$select('modal'),
         display: this.$select('display'),
         runtime: this.$select('runtime'),
         theme: this.$select('theme')
@@ -32,6 +33,9 @@
         return {
           background: this.theme.background
         }
+      },
+      modalOpen() {
+        return this.modal.open
       }
     },
     components: {
@@ -59,9 +63,9 @@
   .podlove {
     display: block;
     position: relative;
-    width: 100%;
-    max-width: $width-xl;
-    min-width: $width-xs;
+    //width: 100%;
+    //max-width: $width-xl;
+    //min-width: $width-xs;
 
     @include font();
   }

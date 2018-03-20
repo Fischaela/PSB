@@ -29,8 +29,9 @@ export default {
   },
   methods: {
     handleCloseClick() {
+      store.dispatch(store.actions.closeModal())
       if ('parentIFrame' in window) {
-        parentIFrame.size('auto', 'auto');
+        parentIFrame.reset();
         parentIFrame.sendMessage('closeModal');
       }
     }

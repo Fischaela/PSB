@@ -67,11 +67,17 @@ export default {
       this.hoverState = isHover;
     },
     handleButtonClick() {
+      let iframeDimensions = {
+        width: 0,
+        height: 0
+      };
+
+      store.dispatch(store.actions.openModal())
       if ('parentIFrame' in window) {
+        console.log('2',parentIFrame);
         parentIFrame.getPageInfo(function(callback) {
           parentIFrame.size(callback.clientHeight, callback.clientWidth);
         });
-        console.log(parentIFrame);
         parentIFrame.sendMessage('openModal');
       }
     }

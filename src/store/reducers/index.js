@@ -6,6 +6,7 @@ import * as player from './player'
 import * as playtime from './playtime'
 import * as chapters from './chapters'
 import * as tabs from './tabs'
+import * as modal from './modal'
 import * as theme from './theme'
 import * as share from './share'
 import * as quantiles from './quantiles'
@@ -25,6 +26,7 @@ export default combineReducers({
   ...playtime,
   ...chapters,
   ...tabs,
+  ...modal,
   ...theme,
   ...share,
   ...quantiles,
