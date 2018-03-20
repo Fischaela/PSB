@@ -3,10 +3,10 @@
     <div class="popup__modal">
       <div class="popup__modal__inner">
         <div class="popup__topbar">
-          <button class="popup__topbar__button popup__topbar__button--help" v-on:click="handleCloseClick()">X</button>
-          <button class="popup__topbar__button popup__topbar__button--back"></button>
-          <h1 class="popup__topbar__title"></h1>
-          <button class="popup__topbar__button popup__topbar__button--close"></button>
+          <button class="popup__topbar__button popup__topbar__button--help" v-if="panel() === 0">H</button>
+          <button class="popup__topbar__button popup__topbar__button--back" v-if="panel() !== 0">B</button>
+          <span class="popup__topbar__title">Subscribe</span>
+          <button class="popup__topbar__button popup__topbar__button--close" v-on:click="handleCloseClick()">X</button>
         </div>
         <div class="popup__panels">
           <PodcastPanelComponent v-if="panel() === 0" class="popup__panel popup__panel--podcast"></PodcastPanelComponent>
@@ -95,5 +95,23 @@ export default {
     left: 0;
     width: 100%;
     height: 46px;
+    z-index: 1;
+  }
+  .popup__topbar__title {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 14px;
+    text-transform: uppercase;
+  }
+  .popup__topbar__button {
+    position: absolute;
+    top: 17px;
+  }
+  .popup__topbar__button--help,
+  .popup__topbar__button--back {
+    left: 20px;
+  }
+  .popup__topbar__button--close {
+    right: 20px;
   }
 </style>
