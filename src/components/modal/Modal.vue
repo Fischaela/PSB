@@ -9,9 +9,7 @@
           <button class="popup__topbar__button popup__topbar__button--close"></button>
         </div>
         <div class="popup__panels">
-          <div class="popup__panel popup__panel--podcast"></div>
-          <div class="popup__panel popup__panel--clients"></div>
-          <div class="popup__panel popup__panel--finish"></div>
+          <PodcastPanelComponent class="popup__panel popup__panel--podcast"></PodcastPanelComponent>
         </div>
       </div>
     </div>
@@ -20,6 +18,7 @@
 
 <script>
 import store from 'store';
+import PodcastPanelComponent from './PanelPodcast';
 
 export default {
   data() {
@@ -35,6 +34,9 @@ export default {
         parentIFrame.sendMessage('closeModal');
       }
     }
+  },
+  components: {
+    PodcastPanelComponent
   }
 }
 </script>
