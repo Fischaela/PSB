@@ -3,10 +3,16 @@
     <div class="popup__modal">
       <div class="popup__modal__inner">
         <div class="popup__topbar">
-          <button class="popup__topbar__button popup__topbar__button--help" :style="topbarButtonStyle" v-if="panel() === 0">H</button>
-          <button class="popup__topbar__button popup__topbar__button--back" :style="topbarButtonStyle" v-if="panel() !== 0" v-on:click="handleBackClick()">B</button>
+          <button class="popup__topbar__button popup__topbar__button--help" :style="topbarButtonStyle" v-if="panel() === 0">
+            <help-icon color="#666666"></help-icon>
+          </button>
+          <button class="popup__topbar__button popup__topbar__button--back" v-if="panel() !== 0" v-on:click="handleBackClick()">
+            <back-icon color="#666666"></back-icon>
+          </button>
           <span class="popup__topbar__title">Subscribe</span>
-          <button class="popup__topbar__button popup__topbar__button--close" :style="topbarButtonStyle" v-on:click="handleCloseClick()">X</button>
+          <button class="popup__topbar__button popup__topbar__button--close" v-on:click="handleCloseClick()">
+            <close-icon color="#666666"></close-icon>
+          </button>
         </div>
         <div class="popup__panels">
           <PodcastPanelComponent v-if="panel() === 0" class="popup__panel popup__panel--podcast"></PodcastPanelComponent>
@@ -24,7 +30,10 @@ import store from 'store';
 import PodcastPanelComponent from './PanelPodcast';
 import ClientsPanelComponent from './PanelClients';
 import FinishPanelComponent from './PanelFinish';
-import PoweredByPodloveIcon from 'icons/PoweredByPodloveIcon'
+import BackIcon from 'icons/BackIcon';
+import CloseIcon from 'icons/CloseIcon';
+import HelpIcon from 'icons/HelpIcon';
+import PoweredByPodloveIcon from 'icons/PoweredByPodloveIcon';
 
 export default {
   data() {
@@ -69,6 +78,9 @@ export default {
     PodcastPanelComponent,
     ClientsPanelComponent,
     FinishPanelComponent,
+    BackIcon,
+    CloseIcon,
+    HelpIcon,
     PoweredByPodloveIcon
   }
 }
