@@ -6,8 +6,8 @@
     </div>
     <div>
       <ul>
-        <li>
-          <a href="" target="_blank"><img src="">Client</a>
+        <li v-for="client in clients">
+          <a :href="client.scheme" target="_blank"><img :src="client.icon">{{ client.title }}</a>
         </li>
       </ul>
     </div>
@@ -23,6 +23,32 @@ export default {
     return {
       hoverState: false,
       show: this.$select('show'),
+      clients: [
+        {
+          title: 'Downcast',
+          scheme: 'downcast://',
+          icon: 'osx/downcast.png',
+          store: 'https://itunes.apple.com/de/app/downcast/id668429425?mt=12&uo=4',
+        },
+        {
+          title: 'Instacast',
+          scheme: 'instacast://',
+          icon: 'osx/instacast.png'
+        },
+        {
+          title: 'iTunes',
+          scheme: 'itpc://',
+          icon: 'osx/itunes.png',
+          install: 'http://www.apple.com/itunes/',
+          customFeedType: 'itunes'
+        },
+        {
+          title: 'PodGrasp',
+          scheme: 'podgrasp://subscribe/',
+          icon: 'osx/podgrasp.png',
+          store: 'https://itunes.apple.com/de/app/podgrasp-podcast-player/id530928805'
+        }
+      ],
       theme: this.$select('theme')
     }
   },
