@@ -6,12 +6,11 @@
     </div>
     <div>
       <ul>
-        <li v-for="client in clients">
-          <a :href="client.scheme" target="_blank"><img :src="client.icon">{{ client.title }}</a>
+        <li class="clients__listelement" v-for="client in clients" v-on:click="handleNextClick()">
+          <a class="clients__listelement__link":href="client.scheme" target="_blank"><img class="clients__listelement__img" :src="client.icon">{{ client.title }}</a>
         </li>
       </ul>
     </div>
-    <button class="finish__button" :class="{ 'podcast__button--hover': hoverState }" :style="buttonStyle" v-text="" @mouseenter="updateHoverState(true)" @mouseleave="updateHoverState(false)" v-on:click="handleNextClick()">Next</button>
   </div>
 </template>
 
@@ -119,6 +118,30 @@ export default {
     position: absolute;
     width: 300px;
     height: 100%;
+  }
+  .clients__listelement {
+    border-bottom: 1px solid #E1E1E1;
+    cursor: pointer;
+    font-size: 16px !important;
+    font-weight: 200 !important;
+    list-style: none !important;
+    padding: 0;
+    position: relative;
+    text-align: left;
+  }
+  .clients__listelement__img {
+    height: 28px !important;
+    left: 18px;
+    position: absolute;
+    width: 28px !important;
+  }
+  .clients__listelement__link {
+    border: none;
+    color: inherit;
+    display: block;
+    font-weight: 200 !important;
+    padding: 10px 20px 10px 58px;
+    text-decoration: none;
   }
   .clients__tabs {
     background-color: #F2F2F2;
