@@ -1,18 +1,20 @@
 <template>
   <div class="clients">
     <div class="clients__tabs">
-      <button class="clients__tab" :class="{ 'clients__tab--active': activeTab === 0 }" :style="activeTabStyle(0)" v-on:click="handleTabClick()">App<span class="clients__tab__indicator" :style="activeIndicatorStyle(0)"></span></button><!--
-      --><button class="clients__tab" :class="{ 'clients__tab--active': activeTab === 1 }" :style="activeTabStyle(1)" v-on:click="handleTabClick()">Cloud<span class="clients__tab__indicator" :style="activeIndicatorStyle(1)"></span></button>
+      <button class="clients__tab" :class="{ 'clients__tab--active': activeTab === 0 }" :style="activeTabStyle(0)" v-on:click="handleTabClick()" :disabled="activeTab === 0">App<span class="clients__tab__indicator" :style="activeIndicatorStyle(0)"></span></button><!--
+      --><button class="clients__tab" :class="{ 'clients__tab--active': activeTab === 1 }" :style="activeTabStyle(1)" v-on:click="handleTabClick()" :disabled="activeTab === 1">Cloud<span class="clients__tab__indicator" :style="activeIndicatorStyle(1)"></span></button>
     </div>
     <div>
-      <clientsOsx></clientsOsx>
+      <clientsOs v-if="activeTab === 0"></clientsOs>
+      <clientsCloud v-if="activeTab === 1"></clientsCloud>
     </div>
   </div>
 </template>
 
 <script>
 import store from 'store';
-import clientsOsx from '../clients/clientsOsx'
+import clientsOs from '../clients/clientsOs';
+import clientsCloud from '../clients/clientsCloud';
 
 export default {
   data() {
@@ -72,7 +74,8 @@ export default {
     }
   },
   components: {
-    clientsOsx
+    clientsOs,
+    clientsCloud
   }
 }
 </script>

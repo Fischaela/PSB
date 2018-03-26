@@ -295,9 +295,7 @@ export default {
       if (this.uas.hasOwnProperty(key)) {
         let regex = new RegExp(this.uas[key]);
         if (regex.test(userAgent)) {
-          console.log('Here',key);
           this.userClients = this.clients[key];
-          console.log('UA!!!', this.clients, this.userClients);
           return key;
         }
       }
