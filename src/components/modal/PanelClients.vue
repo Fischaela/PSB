@@ -5,17 +5,14 @@
       --><button class="clients__tab" :class="{ 'clients__tab--active': activeTab === 1 }" :style="activeTabStyle(1)" v-on:click="handleTabClick()">Cloud<span class="clients__tab__indicator" :style="activeIndicatorStyle(1)"></span></button>
     </div>
     <div>
-      <ul>
-        <li class="clients__listelement" v-for="client in clients" v-on:click="handleNextClick()">
-          <a class="clients__listelement__link":href="client.scheme" target="_blank"><img class="clients__listelement__img" :src="client.icon">{{ client.title }}</a>
-        </li>
-      </ul>
+      <clientsOsx></clientsOsx>
     </div>
   </div>
 </template>
 
 <script>
 import store from 'store';
+import clientsOsx from '../clients/clientsOsx'
 
 export default {
   data() {
@@ -23,32 +20,6 @@ export default {
       hoverState: false,
       activeTab: 0,
       show: this.$select('show'),
-      clients: [
-        {
-          title: 'Downcast',
-          scheme: 'downcast://',
-          icon: 'osx/downcast.png',
-          store: 'https://itunes.apple.com/de/app/downcast/id668429425?mt=12&uo=4',
-        },
-        {
-          title: 'Instacast',
-          scheme: 'instacast://',
-          icon: 'osx/instacast.png'
-        },
-        {
-          title: 'iTunes',
-          scheme: 'itpc://',
-          icon: 'osx/itunes.png',
-          install: 'http://www.apple.com/itunes/',
-          customFeedType: 'itunes'
-        },
-        {
-          title: 'PodGrasp',
-          scheme: 'podgrasp://subscribe/',
-          icon: 'osx/podgrasp.png',
-          store: 'https://itunes.apple.com/de/app/podgrasp-podcast-player/id530928805'
-        }
-      ],
       theme: this.$select('theme')
     }
   },
@@ -67,9 +38,6 @@ export default {
     }
   },
   methods: {
-    handleNextClick() {
-      store.dispatch(store.actions.panelFinish());
-    },
     handleTabClick() {
       if (this.activeTab === 0) {
         this.activeTab = 1;
@@ -102,6 +70,9 @@ export default {
         backgroundColor: backgroundColor
       }
     }
+  },
+  components: {
+    clientsOsx
   }
 }
 </script>
